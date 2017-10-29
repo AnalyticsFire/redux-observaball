@@ -5,7 +5,6 @@ import path from 'path';
 import logger from 'morgan';
 import config from 'config';
 import createStore from 'shared/redux';
-import i18n from './lib/i18n';
 import { createEngine } from './storageEngine';
 import renderReact from './renderReact';
 
@@ -73,8 +72,6 @@ export default function configureApp(app, assetConfigs) {
   // serve public static files.a
   const staticPath = path.resolve(__dirname, '..', 'shared/assets');
   app.use('/assets', express.static(staticPath));
-
-  app.use(i18n);
 
   app.use(logger('dev'));
 

@@ -8,7 +8,7 @@ const blow = (action$, store) =>
   action$.ofType(a.user.blow.click.getType())
     .throttleTime(100)
     .map((action) => {
-      const strength = store.getState().user.strength;
+      const strength = store.getState().game.strength;
       return a.user.blow({ lane: action.payload, strength });
     });
 
