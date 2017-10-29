@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver":{
+      "babel-module":{
+        "config":{
+          "root": ["./src", "./"]
+        }
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "no-unused-vars": ["error", {"argsIgnorePattern": "^_"}],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    "indent": ["error", 2],
+  }
+}
