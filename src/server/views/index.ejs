@@ -11,7 +11,7 @@
   </script>
 </head>
 <body>
-  <div id="app"><%- content %></div>
+  <div id="app"></div>
   <% if (config.get('wds')) { %>
     <script src="http://localhost:<%= config.get('port') %>/webpack-dev-server.js"></script>
   <% } %>

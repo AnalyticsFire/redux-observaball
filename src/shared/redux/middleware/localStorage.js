@@ -3,6 +3,8 @@ import a from '../actions';
 const localStorageKey = 'redux';
 
 const load = () => {
+  if (typeof window === 'undefined') return {};
+  if (window.localStorage === undefined) return {};
   let stored = {};
   try {
     stored = JSON.parse(localStorage.getItem(localStorageKey) || '{}');

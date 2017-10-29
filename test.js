@@ -1,7 +1,9 @@
 import Mocha from 'mocha';
 import fs from 'fs';
 import path from 'path';
-import 'server/lib/ignoreStyles';
+import hook from 'node-hook';
+
+['.scss', '.css'].forEach(ext => hook.hook(ext, () => ({})));
 
 // Instantiate a Mocha instance.
 const mocha = new Mocha({

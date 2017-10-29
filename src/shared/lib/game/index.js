@@ -7,7 +7,7 @@ const initialize = () => {
 };
 
 const update = (state) => {
-  strengthMeter.setLevel(state.user.strength);
+  strengthMeter.setLevel(state.game.strength);
   board.update(state.game.data);
 };
 
