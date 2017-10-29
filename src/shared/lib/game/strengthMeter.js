@@ -23,7 +23,7 @@ const setLevel = (strength) => {
 };
 
 const initialize = () => {
-  svg = d3.select('#energy_meter');
+  svg = d3.select('#strength_meter');
   svg.attr('height', height);
   svg.attr('width', width);
   rects = svg.selectAll('rect').data(strengthLevels);

@@ -4,15 +4,12 @@ import 'rxjs/add/observable/of';
 import { combineEpics } from 'redux-observable';
 import a from '../actions';
 
-const blow = (action$, store) =>
+export const blow = (action$, _store) =>
   action$.ofType(a.user.blow.click.getType())
     .throttleTime(100)
-    .map((action) => {
-      const strength = store.getState().game.strength;
-      return a.user.blow({ lane: action.payload, strength });
-    });
+    .map(action => a.user.blow({ lane: action.payload }));
 
-const start = (action$, store) =>
+export const start = (action$, store) =>
   action$.ofType(a.game.start.getType())
     .filter((action) => {
       const state = store.getState();
@@ -29,7 +26,7 @@ const start = (action$, store) =>
         ))
     );
 
-const incrementTime = (action$, store) =>
+export const incrementTime = (action$, store) =>
     action$.ofType(a.game.incrementTime.getType())
       .filter(() => {
         const state = store.getState();

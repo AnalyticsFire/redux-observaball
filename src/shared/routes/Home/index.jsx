@@ -50,7 +50,7 @@ class Home extends Component {
           </div>
           <div>
             <h3>Strength Level</h3>
-            <svg id="energy_meter" />
+            <svg id="strength_meter" />
           </div>
           <Scoreboard />
         </div>

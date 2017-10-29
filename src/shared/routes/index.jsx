@@ -9,7 +9,6 @@ import SwitchRoute from './SwitchRoute';
 import Home from './Home';
 import NotFoundPage from './NotFoundPage';
 
-
 const Routes = () => (
   <Switch>
     <SwitchRoute exact path="/" component={Home} status={301} />

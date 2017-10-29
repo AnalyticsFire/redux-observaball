@@ -1,6 +1,7 @@
 import Mocha from 'mocha';
 import fs from 'fs';
 import path from 'path';
+import 'server/lib/ignoreStyles';
 
 // Instantiate a Mocha instance.
 const mocha = new Mocha({
