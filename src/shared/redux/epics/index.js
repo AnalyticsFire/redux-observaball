@@ -3,39 +3,34 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/observable/of';
 import { combineEpics } from 'redux-observable';
 import a from '../actions';
+import s from '../selectors';
 
-export const blow = (action$, _store) =>
-  action$.ofType(a.user.blow.click.getType())
+export const applyForce = (action$, store) =>
+  action$.ofType(a.applyForce.click.getType())
     .throttleTime(100)
-    .map(action => a.user.blow({ lane: action.payload }));
+    .filter(_action => s.isGameOngoing(store.getState()))
+    .map(action => a.applyForce({ lane: action.payload }));
 
-export const start = (action$, store) =>
-  action$.ofType(a.game.start.getType())
-    .filter((action) => {
-      const state = store.getState();
-      return state.game.elapsed === 0 || action.payload.paused;
-    })
-    .mergeMap(() =>
-      Observable
-        .interval(250)
-        .map(() => a.game.incrementTime())
+export const game = (action$, store) =>
+  action$.ofType(a.start.click.getType())
+    .filter(_action => !s.isGameOngoing(store.getState()))
+    .mergeMap(() => {
+      const start = Observable.of(a.start());
+      const interval = Observable.interval(250)
         .takeUntil(action$.ofType(
-          a.game.pause.getType(),
-          a.game.reset.getType(),
-          a.game.end.getType()
-        ))
-    );
-
-export const incrementTime = (action$, store) =>
-    action$.ofType(a.game.incrementTime.getType())
-      .filter(() => {
-        const state = store.getState();
-        return state.game.timeToFail !== null && !state.game.ended;
-      })
-      .map(() => a.game.end());
+          a.pause.getType(),
+          a.reset.getType(),
+          a.end.getType()
+        ));
+      const incrementTime = interval
+        .map(_interval => a.incrementTime());
+      const end = interval
+        .filter(_action => s.shouldGameEnd(store.getState()))
+        .map(_action => a.end());
+      return Observable.merge(start, incrementTime, end);
+    });
 
 export default combineEpics(
-  blow,
-  start,
-  incrementTime
+  applyForce,
+  game,
 );

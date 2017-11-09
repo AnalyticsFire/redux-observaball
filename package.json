@@ -12,7 +12,8 @@
     "babel": "babel",
     "webpack": "webpack",
     "build": "sh ./scripts/build-client.sh && sh ./scripts/build-server.sh",
-    "test": "npm run lint && babel-node test.js"
+    "test": "npm run lint && babel-node test.js",
+    "test-only": "babel-node test.js"
   },
   "pre-commit": [
     "lint",

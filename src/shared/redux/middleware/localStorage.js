@@ -19,7 +19,7 @@ let timeout;
 const debounceTime = 3000;
 
 const save = store => next => (action) => {
-  if (action.type !== a.game.end.getType()) return next(action);
+  if (action.type !== a.end.getType()) return next(action);
   if (timeout) {
     clearTimeout(timeout);
   }

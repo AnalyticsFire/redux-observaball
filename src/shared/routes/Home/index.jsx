@@ -15,7 +15,7 @@ class Home extends Component {
   }
 
   render() {
-    const { blow } = this.props;
+    const { applyForce } = this.props;
     return (
       <div id="Home">
         <h1>Redux Observaball</h1>
@@ -43,7 +43,7 @@ class Home extends Component {
             <div className={styles.buttonRow}>
               {
                 times(10, i => i).map(i => (
-                  <button onClick={() => blow(i)} key={i}>{i + 1}</button>
+                  <button onClick={() => applyForce(i)} key={i}>{i + 1}</button>
                 ))
               }
             </div>
@@ -60,14 +60,14 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  blow: PropTypes.func.isRequired,
+  applyForce: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired
 };
 
 const mapStateToProps = _state => ({});
 const mapDispatchToProps = dispatch => ({
-  blow: i => dispatch(a.user.blow.click(i)),
-  reset: () => dispatch(a.game.reset())
+  applyForce: i => dispatch(a.applyForce.click(i)),
+  reset: () => dispatch(a.reset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
