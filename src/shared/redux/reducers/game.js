@@ -2,7 +2,7 @@
 import { createReducer } from 'redux-act';
 import times from 'lodash/times';
 import random from 'lodash/random';
-import blow from './game/blow';
+import applyForce from './game/applyForce';
 import start from './game/start';
 import incrementTime from './game/incrementTime';
 import end from './game/end';
@@ -31,13 +31,13 @@ export const makeDefault = (history = []) => ({
 });
 
 export default createReducer({
-  [a.user.blow]: blow,
-  [a.game.incrementTime]: incrementTime.create(gravitationalAcceleration),
-  [a.game.start]: start,
-  [a.game.reset]: state => makeDefault(state.history),
-  [a.game.pause]: state => ({
+  [a.applyForce]: applyForce,
+  [a.incrementTime]: incrementTime.create(gravitationalAcceleration),
+  [a.start]: start,
+  [a.reset]: state => makeDefault(state.history),
+  [a.pause]: state => ({
     ...state,
     pausedAt: Date.now()
   }),
-  [a.game.end]: end
+  [a.end]: end
 }, makeDefault());

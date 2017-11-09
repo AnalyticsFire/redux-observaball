@@ -9,7 +9,8 @@ export default (state) => {
   const history = orderBy([
     ...state.history,
     lastGame
-  ].slice(0, 5), ['points'], ['desc']);
+  ], ['points'], ['desc']).slice(0, 5);
+
   return {
     ...state,
     history,
